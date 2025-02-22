@@ -1,0 +1,49 @@
+.content__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 2px solid #efefef;
+
+    h2 {
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    button {
+        padding: 8px 18px;
+        background-color: #007BFF;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--white);
+        border-radius: 10px;
+    }
+}
+
+.dropdown__btn,
+.drop-menu__item {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown__btn {
+    margin-bottom: 8px !important;
+    font-size: 17px;
+}
+
+.drop-menu__item {
+    font-size: 16px;
+    padding: 8px;
+
+    input[type="checkbox"] {
+        // accent-color: #00d627;
+        width: 15px;
+        height: 15px;
+    }
+}
+
+.drop-menu__btns {
+    display: flex;
+    gap: 15px;
+}
