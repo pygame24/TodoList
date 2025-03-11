@@ -1,9 +1,8 @@
 import React from "react";
 import { Layout } from "antd";
-import SiderListTasks from "./SiderListTasks";
+import { useSelector } from "react-redux"
 
-// потом через redux
-import { tasks } from "../../tasks";
+import SiderListTasks from "../SiderListTasks";
 
 const siderStyle = {
     backgroundColor: '#00cae3',
@@ -11,13 +10,16 @@ const siderStyle = {
     overflowY: "scroll",
 };
 
-export default function AppSider() {
+export default function AppSider({ borderColor }) {
+    const todos = useSelector((state) => state.todos);
+
     return (
         <Layout.Sider width="25%" style={siderStyle}>
-            {tasks.map((item, index) => (
+            {todos.map((item, index) => (
                 <SiderListTasks 
                     key={index}
                     list={item}
+                    borderColor={borderColor}
                 />
             ))}
         </Layout.Sider>

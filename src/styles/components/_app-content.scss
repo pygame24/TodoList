@@ -22,7 +22,7 @@
 
 .dropdown__btn,
 .drop-menu__item {
-    display: flex; 
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
@@ -37,7 +37,7 @@
     padding: 8px;
 
     input[type="checkbox"] {
-        // accent-color: #00d627;
+        accent-color: #ccc;
         width: 15px;
         height: 15px;
     }
@@ -46,4 +46,33 @@
 .drop-menu__btns {
     display: flex;
     gap: 15px;
+}
+
+.input-desc {
+    margin-bottom: 25px;
+}
+
+.info-tag {
+    display: flex;
+    align-items: center;
+
+    .tag {
+       width: 20px;
+       height: 20px;
+       border-radius: 50%;
+       margin-right: 8px;
+    }
+
+    .red {
+        background-color: #df1e11;
+    }
+    .orange {
+        background-color: #ff8f33;
+    }
+    .blue {
+        background-color: #0280e0;
+    }
+    .grey {
+        background-color: #c8c8c8;
+    }
 }

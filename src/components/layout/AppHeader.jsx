@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Layout } from 'antd';
 import { PieChartOutlined, MoonOutlined, SunOutlined, AppstoreOutlined  } from '@ant-design/icons';
 
@@ -18,13 +19,13 @@ export default function AppHeader() {
 
     return (
         <Layout.Header style={headerStyle}>
-            <h1 style={{fontSize: 35, fontWeight: 600}}>ToDo List</h1>
+            <Link style={{ color: '#fff', fontSize: 35, fontWeight: 600 }} to='/'>ToDo List</Link>
             <ul style={{display: 'flex', gap: 30, alignItems: "center", marginTop: '10px'}}>
-                <li><a href="#!"><AppstoreOutlined style={{color: '#fff', fontSize: 27}} /></a></li>
-                <li><a href="#!"><PieChartOutlined style={{color: '#fff', fontSize: 27}} /></a></li>
-                <li><a href="#!" onClick={() =>setDark((prev) => !prev)}>{
-                    dark ? <SunOutlined style={{color: '#fff', fontSize: 27}} />
-                    : <MoonOutlined style={{color: '#fff', fontSize: 27}} />}
+                <li><Link to='/matrix' style={{color: '#fff', fontSize: 27}}><AppstoreOutlined /></Link></li>
+                <li><Link to='/chart' style={{color: '#fff', fontSize: 27}}><PieChartOutlined /></Link></li>
+                <li><a style={{color: '#fff', fontSize: 27}} href="#!" onClick={() =>setDark((prev) => !prev)}>{
+                    dark ? <SunOutlined />
+                    : <MoonOutlined />}
                     </a></li>
             </ul>
         </Layout.Header>
