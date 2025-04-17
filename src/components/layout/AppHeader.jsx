@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Layout } from 'antd';
 import { PieChartOutlined, MoonOutlined, SunOutlined, AppstoreOutlined  } from '@ant-design/icons';
+import { useTaskContext } from "../../context/TaskContext";
 
 const headerStyle = {
     width: '100%',
@@ -14,11 +14,10 @@ const headerStyle = {
 };
 
 export default function AppHeader() {
-    // Эту строчку в useContext или в redux
-    const [dark, setDark] = useState(false);
-
+    const {dark, setDark} = useTaskContext();
+// Пока не  изменят тему не переренд-ать
     return (
-        <Layout.Header style={headerStyle}>
+        <Layout.Header style={headerStyle} className="header">
             <Link style={{ color: '#fff', fontSize: 35, fontWeight: 600 }} to='/'>ToDo List</Link>
             <ul style={{display: 'flex', gap: 30, alignItems: "center", marginTop: '10px'}}>
                 <li><Link to='/matrix' style={{color: '#fff', fontSize: 27}}><AppstoreOutlined /></Link></li>

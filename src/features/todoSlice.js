@@ -5,30 +5,29 @@ const todoSlice = createSlice({
     initialState: [{
         "Не выполнено": [{
             id: Math.floor(Math.random()*10000),
-            name: 'Задача 1',
-            description: 'Описание задачи 1',
+            name: '✔ Создавайте задачи, освобождайте свой разум',
+            description: 'Если вы часто забываете, что должны сделать, запишите, чтобы освободить свой разум.',
             tag: 'Срочно и важно',
             completed: false,
         },
         {
             id: Math.floor(Math.random()*10000),
-            name: 'Задача 2',
-            description: 'Описание задачи 2',
+            name: '🎯 Матрица Эйзенхауэра: Приоритизация задач',
+            description: 'Если у вас каждый день много дел, использование матрицы Эйзенхауера поможет вам сосредоточиться на важных и срочных делах.',
+            tag: 'Срочно, но не важно',
+            completed: false,
+        },
+        {
+            id: Math.floor(Math.random()*10000),
+            name: '📈 Диаграмма задач',
+            description: 'Вы также можете отслеживать количество задач отсортированных по категориям: Срочно и важно; Важно, но не срочно; Срочно, но не важно; Не срочно и не важно; Выполнено',
             tag: 'Срочно, но не важно',
             completed: false,
         },
         ]
     },
     {
-        'Выполнено': [
-            {
-                id: Math.floor(Math.random()*10000),
-                name: 'Задача 3',
-                description: 'Описание задачи 3',
-                tag: 'Не срочно, но важно',
-                completed: true,
-            },
-        ]
+        'Выполнено': []
     }
     ],
     reducers: {
@@ -36,7 +35,7 @@ const todoSlice = createSlice({
             const { status, task } = action.payload;
             const todoList = state.find((todo) => todo[status])
             if (todoList) {
-                todoList[status].push(task)
+                todoList[status].unshift(task)
             }
         },
         updateTodo: (state, action) => {
@@ -47,8 +46,6 @@ const todoSlice = createSlice({
                 if (taskIndex !== -1) {
                     todoList[status][taskIndex] = { ...todoList[status][taskIndex], ...updateTask };
                 }
-                // todoList[status].push(updateTask);
-                // todoList[status] = todoList[status].filter((t) => t.id !== taskId)
             }
         },
 
@@ -64,16 +61,6 @@ const todoSlice = createSlice({
             const todoList = state.find((todo) => todo[status]);
             const taskTag = task.completed ? 'Выполнено' : 'Не выполнено';
 
-            // if (todoList) {
-            //     const taskIndex = todoList[status].findIndex((t) => t.id === task.id);
-            //     if (taskIndex !== -1) {
-            //         const uptateTask = {
-            //             ...todoList[status][taskIndex],
-            //             completed: !todoList[status][taskIndex].completed
-            //         };
-            //         todoList[status][taskIndex] = uptateTask;
-            //     }
-            // }
             const taskComplete = {
                 ...task,
                 completed: !task.completed,
@@ -84,7 +71,6 @@ const todoSlice = createSlice({
             if (todoListItemToFilter) {
                 todoListItemToFilter[taskTag] = todoListItemToFilter[taskTag].filter(t => t.id !== task.id);
             }
-            // todoList[taskTag] = todoList[taskTag].filter((t) => t.id !== task.id);
         }
     },
 });

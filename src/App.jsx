@@ -1,13 +1,21 @@
 import React from "react";
-import AppLayout from "./components/layout/AppLayout";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
-import store from "./store/store";
+import { TaskProvider } from "./context/TaskContext";
+import AppLayout from "./components/layout/AppLayout";
+
+import store, { persistor } from "./store/store";
 
 function App() {
-    return (
+  return (
     <Provider store={store}>
-      <AppLayout />
+      <PersistGate loading={null} persistor={persistor} >
+        <TaskProvider>
+          <AppLayout />
+        </TaskProvider>
+      </PersistGate>
+
     </Provider>
   )
 }

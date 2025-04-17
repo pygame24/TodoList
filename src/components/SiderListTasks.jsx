@@ -7,16 +7,15 @@ export default function SiderListTasks({ list, borderColor }) {
 
     const listName = Object.keys(list)[0];
     const tasks = list[listName];
-    // console.log(list)
-    // console.log(tasks, listName)
 
     return (
         <div className="dropdown">
             <button onClick={() => setDownMenu((prev) => !prev)}>{listName}  {downMenu ? <DownOutlined /> : <RightOutlined />}</button>
             <div className={`dropdown__menu ${downMenu ? 'open' : 'none'}`}>
                 <ul>
-                    {tasks.map((task) => (
+                    {tasks.map((task, index) => (
                         <SiderTask 
+                        key={index}
                             task={task}
                             borderColor={borderColor}
                         />

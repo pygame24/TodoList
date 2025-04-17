@@ -4,7 +4,7 @@ import { completedTask } from "../features/todoSlice";
 
 export default function SiderTask({ task, borderColor }) {
     const [complete, setComplete] = useState(task.completed);
-    const borderInput = borderColor(task);
+    const borderInput = borderColor(task.tag);
 
     const dispatch = useDispatch();
 
@@ -15,7 +15,7 @@ export default function SiderTask({ task, borderColor }) {
                     className={`custom-checkbox ${borderInput}`}
                     checked={complete}
                     type="checkbox"
-                    onClick={() => {
+                    onChange={() => {
                         // setComplete(!complete);
                         dispatch(completedTask({status: task.completed ? 'Не выполнено' : 'Выполнено', task: task}))
                     }

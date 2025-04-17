@@ -4,27 +4,37 @@
     --white: #FDFDFD;
 }
 
-// .content {
-//     height: "100%";
-//     background-color: '#fdfdfd';
-//     overflow-y: "scroll";
+.btn {
+    padding: 8px 18px;
+    background-color: #007BFF;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--white);
+    border-radius: 10px;
+}
 
-//     -ms-overflow-style: none;
-//     overflow: -moz-scrollbars-none;
-//     overflow-x: scroll;
-//     overflow-y: hidden;
+.loading {
+    background-color: #9f9f9f;
+}
 
-//     &::-webkit-scrollbar {
-//         width: 0 !important;
-//         height: 0;
-//         display: none !important;
-//         background: transparent
-//     }
+.invalid-value {
+    border: 1px solid #ff6358 !important;
+    box-shadow: 0 0 8px #ff665b;
+}
+
+// .textarea {
+//     height: 100vh;
+//     width: 472px;
+
 // }
+textarea {
+    height: 160px;
+    width: 472px;
+    resize: none;
+}
 
 .custom-checkbox {
     position: absolute;
-    // z-index: -1;
     opacity: 0;
 }
 
@@ -76,4 +86,42 @@
 
 .blue+label::before {
     border-color: #0280e0;
+}
+
+.dark {
+    .header {
+        background-color: #1d1d1d !important;
+    }
+    
+    .modal,
+    .sider {
+        background-color: #222222 !important;
+    }
+    
+    .sider,
+    .content {
+        
+        .dropdown {
+            background-color: #333333;
+            border: 1px solid #666666;
+            color: var(--white) !important;
+    
+        }
+        .dropdown__menu {
+            li:hover {
+                background-color: #4a4a4a;
+            }
+            a {
+                color: var(--white) !important;
+            }
+        }
+    }
+    .content {
+        background-color: #2a2a2a !important;
+        color: var(--white) !important;
+    
+        .content__header {
+            border-bottom: 1px solid #9f9f9f;
+        }
+    }
 }

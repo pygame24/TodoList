@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Select } from "antd";
 import { useSelector } from "react-redux";
+import { useTaskContext } from "../context/TaskContext";
 
 const styleInput = {
     width: '100%',
@@ -16,31 +17,33 @@ const tags = [
     { value: 'Не срочно и не важно', label: 'Не срочно и не важно' },
 ];
 
-export default function NewTaskForm({
-    // findTaskById,
-    setTask,
-    taskId,
-    selectedTag,
-    setSelectedTag,
-    taskName,
-    setTaskName,
-    taskDesc,
-    setTaskDesc,
-
-    openModalAddNewTask,
-    isOpenUpdateTask,
-
-    selectedUpdateTag,
-    setSelectedUpdateTag,
-    taskUpdateName,
-    setUpdateTaskName,
-    taskUpdateDesc,
-    setUpdateTaskDesc
-}) {
+export default function NewTaskForm() {
 
     const todos = useSelector((state) => state.todos);
-    // const [task, setTask] = useState(null);
-    
+    const {
+        setTask,
+        taskId,
+        selectedTag,
+        setSelectedTag,
+        taskName,
+        setTaskName,
+        taskDesc,
+        setTaskDesc,
+        isLoading,
+        // setIsLoading,
+
+        isOpenUpdateTask,
+        addNewTask,
+        updateTask,
+
+        selectedUpdateTag,
+        setSelectedUpdateTag,
+        taskUpdateName,
+        setUpdateTaskName,
+        taskUpdateDesc,
+        setUpdateTaskDesc
+    } = useTaskContext();
+
     useEffect(() => {
         if (isOpenUpdateTask) {
             const foundTask = findTaskById(taskId);
@@ -81,33 +84,45 @@ export default function NewTaskForm({
         setUpdateTaskDesc(event.target.value);
     };
 
+    let typeBtn = isOpenUpdateTask ? 'Update Task' : 'Add Task';
+    let typeLoad = typeBtn === 'Update Task' ? 'Updating...' : 'Adding...';
+
     return (
-        <div>
-            <div className='tag-color'></div>
+        <div style={{marginBottom: 30}}>
             <Select
                 defaultValue={isOpenUpdateTask ? selectedUpdateTag : selectedTag}
-                value={selectedUpdateTag}
+                value={isOpenUpdateTask ? selectedUpdateTag : selectedTag}
                 style={{ width: 200 }}
                 onChange={isOpenUpdateTask ? handleChangeUpdateTag : handleChangeTag}
                 options={tags}
             />
-            <form action="">
+            <form action="" style={{height: '240px'}}>
                 <input
                     style={styleInput}
                     value={isOpenUpdateTask ? taskUpdateName : taskName} //
                     onChange={isOpenUpdateTask ? handleChangeUpdateName : handleChangeName}
-                    className="input-name"
+                    className={!(isOpenUpdateTask ? taskUpdateName : taskName) && "invalid-value"}
                     type="text"
-                    placeholder="Что бы вы хотели сделать?" />
+                    spellCheck="true"
+                    placeholder="Что бы вы хотели сделать?"
+                    required
+                />
                 <br />
-                <input
+                <textarea
                     style={styleInput}
                     value={isOpenUpdateTask ? taskUpdateDesc : taskDesc} //
                     onChange={isOpenUpdateTask ? handleChangeUpdateDesc : handleChangeDesc}
                     className="input-desc"
                     type="text"
+                    spellCheck="true"
                     placeholder="Описание" />
             </form>
+            <div style={{float: 'right'}}>
+                <button className={`btn ${(isLoading || !(isOpenUpdateTask ? taskUpdateName : taskName)) && 'loading'}`}
+                    disabled={isLoading || !(isOpenUpdateTask ? taskUpdateName : taskName)}
+                    onClick={isOpenUpdateTask ? updateTask : addNewTask}
+                >{isLoading ? typeLoad : typeBtn}</button>
+            </div>
         </div>
     )
 }

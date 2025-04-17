@@ -1,4 +1,5 @@
 .content__header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,17 +7,8 @@
     border-bottom: 2px solid #efefef;
 
     h2 {
-        font-size: 18px;
+        font-size: 24px;
         font-weight: 500;
-    }
-
-    button {
-        padding: 8px 18px;
-        background-color: #007BFF;
-        font-size: 16px;
-        font-weight: 500;
-        color: var(--white);
-        border-radius: 10px;
     }
 }
 
@@ -36,10 +28,39 @@
     font-size: 16px;
     padding: 8px;
 
+    .item__right {
+        display: flex;
+        align-items: flex-start;
+
+        .custom-input {
+            margin-top: 3px;
+        }
+    }
+
     input[type="checkbox"] {
         accent-color: #ccc;
         width: 15px;
         height: 15px;
+    }
+
+    .task-info {
+        margin-left: 8px;
+
+        a {
+            margin-left: 0;
+        }
+    }
+
+    p {
+        color: var(--secondary-text);
+        font-size: 14px;
+        white-space: nowrap;
+        /* Запретить перенос строк */
+        overflow: hidden;
+        /* Скрыть переполнение */
+        text-overflow: ellipsis;
+        /* Добавить троеточие в конце */
+        width: 200px;
     }
 }
 
@@ -57,21 +78,24 @@
     align-items: center;
 
     .tag {
-       width: 20px;
-       height: 20px;
-       border-radius: 50%;
-       margin-right: 8px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-right: 8px;
     }
 
     .red {
         background-color: #df1e11;
     }
+
     .orange {
         background-color: #ff8f33;
     }
+
     .blue {
         background-color: #0280e0;
     }
+
     .grey {
         background-color: #c8c8c8;
     }

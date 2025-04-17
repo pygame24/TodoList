@@ -1,13 +1,16 @@
+import { useTaskContext } from "../context/TaskContext"
+
 const styleTag = {
     fontWeight: 500,
      fontSize: 16 
 }
 
-export default function InfoTaskModal({ infoTask, borderColor }) {
-    const border = borderColor(infoTask)
+export default function InfoTaskModal() {
+    const { infoTask, borderColor } = useTaskContext();
+    const border = borderColor(infoTask.tag)
     return (
-        <div className="info">
-            <div style={{display: 'flex', justifyContent: 'space-between'}} className="info__header">
+        <div className="info dark__info-modal">
+            <div style={{ display: 'flex', justifyContent: 'space-between' }} className="info__header">
                 <div className="info-tag">
                     <div className={`tag ${border}`}></div>
                     <h2 style={styleTag} >{infoTask.tag}</h2>
